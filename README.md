@@ -15,4 +15,24 @@
     - append images to a div and return
 1) write functions to get current stats, set current stats, increment seen and increment caught stats. 
 1) increment turns each turn with global state variable 
-1) create a results page that shows how many of each pokemon have been caught and seen  
+1) create a results page that shows how many of each pokemon have been caught and seen 
+
+## functions needed and organization
+
+1) utils
+    - setThreePokemon
+    - renderPokeImage
+    - getRandomPokemon
+    - findById
+1) localStorage utils
+    - getStats
+    - setStats
+    - incrementSeen
+    - incrementCaught
+
+## stretch goals
+
+1) use an array of arrays to save multiple sessions
+1) never show the same pokemon in consecutive rounds
+1) display stats live under pokemon as they appear
+
