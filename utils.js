@@ -69,9 +69,13 @@ export function renderPokeImage(pokemon) {
     pokeImage.classList.add('pokemon-image');
 
     pokeImage.addEventListener('click', () => {
-        incrementCaught(pokemon.id); 
-        generateThreePokemon();
-
+        incrementCaught(pokemon.id);
+        if (numberOfTurns > 9){
+            window.location = './results/results.html';
+        } else {
+            generateThreePokemon();
+            appearCaptured(pokeImage);
+        }
     });
 
     return pokeImage;
@@ -120,4 +124,9 @@ function compareTwoArrays(arr1, arr2) {
     }
     console.log('no match');
     return false;
+}
+
+function appearCaptured(photo) {
+    const capturedArea = document.getElementById('captured-zone');
+    capturedArea.appendChild(photo);
 }
