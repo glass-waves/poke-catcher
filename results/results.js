@@ -1,5 +1,5 @@
 import { getStats, setStats } from '../localStorageUtils.js';
-import { toNameArray } from './mungeUtils.js';
+import { toNameArray, toSeenArray, toCaughtArray, generateRandomColor, addAlphaToColor } from './mungeUtils.js';
 import { renderTableRows } from './results-render.js';
 
 
@@ -7,32 +7,22 @@ const table = document.getElementById('results-table');
 const resetButton = document.getElementById('reset-button');
 
 const currentStats = getStats();
+const randColors = generateRandomColor(currentStats);
+console.log(randColors);
+const barColors = addAlphaToColor(randColors, 0.6);
+const borderColors = addAlphaToColor(randColors, 1);
 console.log(currentStats);
 
-var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = document.getElementById('seenChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: toNameArray(currentStats),
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            label: '# of Times Seen',
+            data: toSeenArray(currentStats),
+            backgroundColor: barColors,
+            borderColor: borderColors,
             borderWidth: 1
         }]
     },
@@ -40,6 +30,7 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
+                    stepSize: 1,
                     beginAtZero: true
                 }
             }]
