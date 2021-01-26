@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from '../utils.js';
+import { capitalizeFirstLetter, findByType } from '../utils.js';
 
 // Takes stat array and returns an array of capitalized names
 export function toNameArray(someArr) {
@@ -51,4 +51,40 @@ export function addAlphaToColor(colors, alpha){
     return colorArr;
 }
 
+//Takes an array and counts catches per type of pokemon
+
+export function sortByType(someArr) {
+    const typeArr = [];
+    for (const item of someArr) {
+        const itemInTypeArr = findByType(typeArr, item.type);
+        if (!itemInTypeArr) {
+            const newTypeObj = {
+                type: item.type,
+                caught: item.caught 
+            };
+            typeArr.push(newTypeObj);
+        } else {
+            itemInTypeArr.caught += item.caught;
+        }
+    }
+    return typeArr;
+}
+
+// extract type list from type array
+export function extractTypeList(typeArr) {
+    const typeList = [];
+    for (const item of typeArr) {
+        typeList.push(item.type);
+    }
+    return typeList;
+}
+
+//extract number of each type from type array
+export function extractTypeNumber(typeArr){
+    const typeNumber = [];
+    for (const item of typeArr) {
+        typeNumber.push(item.caught);
+    }
+    return typeNumber;
+}
 

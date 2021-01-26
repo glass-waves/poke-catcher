@@ -28,7 +28,8 @@ export function incrementSeen(id) {
             id: id,
             seen: 1,
             caught: 0,
-            pokemonName: itemInData.pokemon
+            pokemonName: itemInData.pokemon,
+            type: itemInData.type_1
         };
         currentStats.push(newSighting);
     } else {
