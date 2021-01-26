@@ -1,14 +1,15 @@
 import { capitalizeFirstLetter } from '../utils.js';
 
+// Takes stat array and returns an array of capitalized names
 export function toNameArray(someArr) {
     const nameArr = [];
     for (let item of someArr) {
-        const pokeName = item.pokemonName;
+        const pokeName = capitalizeFirstLetter(item.pokemonName);
         nameArr.push(pokeName); 
     }
     return nameArr;
 }
-
+//Takes stat array and returns an array of number-of-times-seen
 export function toSeenArray(someArr) {
     const seenArr = [];
     for (let item of someArr) {
@@ -16,15 +17,15 @@ export function toSeenArray(someArr) {
     }
     return seenArr;
 }
-
+//Takes stat array and returns an array of number-of-times-caught
 export function toCaughtArray(someArr) {
     const caughtArr = [];
     for (let item of someArr) {
         caughtArr.push(item.caught);
-        return caughtArr;
     }
+    return caughtArr;
 }
-
+//Takes stat array and returns an array in which each member is an array of RGB values
 export function generateRandomColor(someArr) {
     const colors = [];
     for (const item of someArr) {
@@ -37,7 +38,7 @@ export function generateRandomColor(someArr) {
     }
     return colors;
 }
-
+//Takes array from generateRandomColor, turns each color into a string with a specified alpha value 
 export function addAlphaToColor(colors, alpha){
     const colorArr = [];
     for (const color of colors) {

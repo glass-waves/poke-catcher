@@ -7,11 +7,11 @@ const table = document.getElementById('results-table');
 const resetButton = document.getElementById('reset-button');
 
 const currentStats = getStats();
+
 const randColors = generateRandomColor(currentStats);
-console.log(randColors);
 const barColors = addAlphaToColor(randColors, 0.6);
 const borderColors = addAlphaToColor(randColors, 1);
-console.log(currentStats);
+
 
 var ctx = document.getElementById('seenChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -23,7 +23,7 @@ var myChart = new Chart(ctx, {
             data: toSeenArray(currentStats),
             backgroundColor: barColors,
             borderColor: borderColors,
-            borderWidth: 1
+            borderWidth: 2
         }]
     },
     options: {
@@ -37,7 +37,30 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
+var ctx2 = document.getElementById('caughtChart').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: toNameArray(currentStats),
+        datasets: [{
+            label: '# of Times Caught',
+            data: toCaughtArray(currentStats),
+            backgroundColor: barColors,
+            borderColor: borderColors,
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    stepSize: 1,
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 
 
 
