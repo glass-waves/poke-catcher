@@ -1,4 +1,5 @@
 import { findById } from './utils.js';
+import { pokemon } from './data.js';
 
 const POKESTATS = 'POKESTATS';
 
@@ -22,10 +23,12 @@ export function incrementSeen(id) {
     const currentStats = getStats();
     const objectToIncrement = findById(currentStats, id);
     if (!objectToIncrement) {
+        const itemInData = findById(pokemon, id);
         const newSighting = {
             id: id,
             seen: 1,
-            caught: 0
+            caught: 0,
+            pokemonName: itemInData.pokemon
         };
         currentStats.push(newSighting);
     } else {

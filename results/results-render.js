@@ -2,6 +2,7 @@ import { getStats } from '../localStorageUtils.js';
 import { findById, capitalizeFirstLetter } from '../utils.js';
 import { pokemon } from '../data.js';
 
+
 export function renderTableRows(pokemonInArray) {
     const row = document.createElement('tr');
     const imageTd = document.createElement('td');
