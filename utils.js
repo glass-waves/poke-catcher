@@ -77,7 +77,7 @@ export function renderPokeImage(pokemon) {
 
     pokeImage.addEventListener('click', () => {
         incrementCaught(pokemon.id);
-        if (numberOfTurns > 9){
+        if (numberOfTurns > 11){
             storeSession();
             window.location = './results/results.html';
         } else {

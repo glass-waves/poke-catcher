@@ -1,11 +1,14 @@
 
 
-
+body {
+    font-family: 'Inconsolata', monospace;
+    background-color: antiquewhite;
+}
 
 .pokemon-container {
     display: flex;
-    justify-content: space-around;
-    padding: 50px;
+    justify-content: center;
+    padding: 30px;
 
 }
 section {
@@ -13,26 +16,19 @@ section {
     flex-direction: column;
 }
 .pokemon-image {
-    max-width: 80%;
+    max-width: 70%;
 }
 .poke-div {
-    width: 25%;
+    width: 20%;
     text-align: center;
-    padding: 15px;
+    padding: 5px;
     position: relative;
 }
 .poke-div img {
     /* transition: all 1s ease-in-out; */
 }
-.stat-div {
-    position: absolute;
-    left: 25%;
-}
-.poke-div img:hover {
-    max-width: 90%;
-    position: absolute;
-    top: 60px;
-    left: 0;
+.poke-div:hover{
+    border: inset 10px yellow;
 }
 /* .poke-div img:active {
     transform: rotate3d(1, 1, 1, 45deg);
@@ -62,4 +58,9 @@ h1 {
     text-align: center;
     font-size: 30px;
     margin-top: 30px;
+}
+.prison {
+    border: ridge 5px grey;
+    width: 300px;
+    margin: 20px auto;
 }

@@ -102,7 +102,6 @@ var myChart4 = new Chart(ctx4, {
         scales: {
             yAxes: [{
                 ticks: {
-                    stepSize: 1,
                     beginAtZero: true
                 }
             }]
