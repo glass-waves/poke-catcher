@@ -42,13 +42,15 @@ h2 {
 
 }
 button {
-    font-weight: bold;
+    font-family:'Inconsolata', monospace;;
+    font-weight: 600;
     font-size: 30px;
     width: 400px;
     margin: 20px auto;
-    border: 3px solid black;
+    border: none;
     border-radius: 10px;
     box-shadow: 1px 1px 4px grey;
+    background-color: white;
 }
 button:hover {
     box-shadow: 4px 4px 10px black;

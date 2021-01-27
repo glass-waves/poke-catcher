@@ -172,12 +172,12 @@ test('function should take an array of stats and return another array of objects
         {
             type: 'bug',
             caught: 4
-        }, 
+        },
         {
             type: 'normal',
             caught: 1
         }
     ];
-    
+
     expect.deepEqual(actual, expected);
 });
