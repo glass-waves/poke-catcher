@@ -1,4 +1,5 @@
-import { capitalizeFirstLetter, findByType } from '../utils.js';
+import { getLongStats } from '../localStorageUtils.js';
+import { capitalizeFirstLetter, findById, findByType } from '../utils.js';
 
 // Takes stat array and returns an array of capitalized names
 export function toNameArray(someArr) {
@@ -62,7 +63,7 @@ export function sortByType(someArr) {
                 type: item.type,
                 caught: item.caught 
             };
-            typeArr.push(newTypeObj);
+            if (newTypeObj.caught > 0) typeArr.push(newTypeObj);
         } else {
             itemInTypeArr.caught += item.caught;
         }
@@ -86,5 +87,24 @@ export function extractTypeNumber(typeArr){
         typeNumber.push(item.caught);
     }
     return typeNumber;
+}
+
+export function returnTotalArray() {
+    const sessions = getLongStats();
+    const totalArr = [];
+    for (let session of sessions) {
+        for (const pokemon of session) {
+            const totalItem = findById(totalArr, pokemon.id);
+            if (!totalItem) {
+                totalArr.push(pokemon);
+            } else {
+                totalItem.seen += pokemon.seen;
+                totalItem.caught += pokemon.caught;
+            }
+        }
+    }
+    console.log(totalArr);
+    return totalArr;
+
 }
 

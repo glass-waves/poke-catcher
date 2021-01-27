@@ -2,6 +2,7 @@ import { findById } from './utils.js';
 import { pokemon } from './data.js';
 
 const POKESTATS = 'POKESTATS';
+const LONGSTATS = 'LONGSTATS';
 
 export function getStats() {
     const currentStats = JSON.parse(localStorage.getItem(POKESTATS));
@@ -43,4 +44,20 @@ export function incrementCaught(id) {
     const objectToIncrement = findById(currentStats, id);
     objectToIncrement.caught++;
     setStats(currentStats);
+}
+export function getLongStats() {
+    const currentStats = JSON.parse(localStorage.getItem(LONGSTATS));
+    console.log(currentStats);
+    if (!currentStats) {
+        localStorage.setItem(LONGSTATS, JSON.stringify([]));
+        return [];
+    } else {
+        return currentStats;  
+    }
+}
+export function storeSession() {
+    const singleStats = getStats();
+    const currentStats = getLongStats();
+    currentStats.push(singleStats);
+    localStorage.setItem(LONGSTATS, JSON.stringify(currentStats));
 }

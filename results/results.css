@@ -53,10 +53,12 @@ button:hover {
 .graphs {
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .graphs div {
-    width: 50%;
-    margin: 20px;
+    width: 45%;
+    margin: 2.5%;
     box-shadow: 1px 1px 10px grey;
     background-color: white;
+    padding: 10px 20px 20px 20px;
 }

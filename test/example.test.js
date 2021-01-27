@@ -172,11 +172,7 @@ test('function should take an array of stats and return another array of objects
         {
             type: 'bug',
             caught: 4
-        },
-        {
-            type: 'grass',
-            caught: 0
-        },
+        }, 
         {
             type: 'normal',
             caught: 1

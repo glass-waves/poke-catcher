@@ -1,9 +1,6 @@
 import { getStats, setStats } from '../localStorageUtils.js';
-import { toNameArray, toSeenArray, toCaughtArray, generateRandomColor, addAlphaToColor } from './mungeUtils.js';
-import { renderTableRows } from './results-render.js';
+import { toNameArray, toSeenArray, toCaughtArray, generateRandomColor, addAlphaToColor, sortByType, extractTypeList, extractTypeNumber, returnTotalArray } from './mungeUtils.js';
 
-
-const table = document.getElementById('results-table');
 const resetButton = document.getElementById('reset-button');
 
 const currentStats = getStats();
@@ -51,6 +48,57 @@ var myChart2 = new Chart(ctx2, {
         }]
     },
     options: {
+        padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    stepSize: 1,
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+var ctx3 = document.getElementById('typeChart').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    type: 'pie',
+    data: {
+        labels: extractTypeList(sortByType(currentStats)),
+        datasets: [{
+            label: 'Caught per Type',
+            data: extractTypeNumber(sortByType(currentStats)),
+            backgroundColor: barColors,
+            borderColor: borderColors,
+            borderWidth: 2
+        }]
+    
+    }
+});
+var ctx4 = document.getElementById('total-caught-chart').getContext('2d');
+var myChart4 = new Chart(ctx4, {
+    type: 'bar',
+    data: {
+        labels: toNameArray(returnTotalArray()),
+        datasets: [{
+            label: 'Total # of Times Caught',
+            data: toCaughtArray(returnTotalArray()),
+            backgroundColor: barColors,
+            borderColor: borderColors,
+            borderWidth: 2
+        }]
+    },
+    options: {
+        padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+        },
         scales: {
             yAxes: [{
                 ticks: {
@@ -62,15 +110,6 @@ var myChart2 = new Chart(ctx2, {
     }
 });
 
-
-
-
-
-
-
-// for (let stat of currentStats) {
-//     table.append(renderTableRows(stat));
-// }
 
 resetButton.addEventListener('click', () => {
     const emptyArray = [];

@@ -1,5 +1,6 @@
 import { pokemon } from './data.js';
-import { getStats, incrementCaught, incrementSeen } from './localStorageUtils.js';
+import { getStats, incrementCaught, incrementSeen, storeSession } from './localStorageUtils.js';
+import { returnTotalArray } from './results/mungeUtils.js';
 
 let numberOfTurns = 0;
 let oldArray = [];
@@ -77,6 +78,7 @@ export function renderPokeImage(pokemon) {
     pokeImage.addEventListener('click', () => {
         incrementCaught(pokemon.id);
         if (numberOfTurns > 9){
+            storeSession();
             window.location = './results/results.html';
         } else {
             generateThreePokemon();
